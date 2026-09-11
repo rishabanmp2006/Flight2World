@@ -1,0 +1,39 @@
+{
+  "stage": "cleanup",
+  "status": "ok",
+  "elapsed_s": 0.10291212500305846,
+  "details": {
+    "raw_points": 38205,
+    "clean_points": 33246,
+    "raw_path": "/Users/kavya/flight2world/outputs/phase5a_real_test/reconstruction/fused_raw.ply",
+    "clean_path": "/Users/kavya/flight2world/outputs/phase5a_real_test/reconstruction/fused_clean.ply",
+    "diagnostics": {
+      "raw_points": 38205,
+      "clean_points": 33246,
+      "voxel_size": 0.04,
+      "stat_nb": 30,
+      "stat_ratio": 1.5,
+      "dbscan": {
+        "vox": 0.0316222915034177,
+        "eps": 0.11067802026196195,
+        "n_clusters": 21,
+        "main_label": 0,
+        "main_points": 30788,
+        "kept_labels": [
+          0,
+          1,
+          4,
+          7,
+          8,
+          10,
+          12,
+          13,
+          17
+        ],
+        "largest_dim": 10.540763834472566,
+        "status": "ok"
+      }
+    }
+  },
+  "error": null
+}

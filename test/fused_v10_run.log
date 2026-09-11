@@ -1,0 +1,280 @@
+
+======================================================================
+FLIGHT2WORLD V10
+TRACK-ANCHORED FUSION (DEPTH-ANYTHING-V2-BASE)
+======================================================================
+
+Registered COLMAP images: 55
+COLMAP sparse points: 20262
+Usable registered frames: 55
+
+Camera path statistics:
+  consecutive baseline: median=0.0562 min=0.0022 max=7.8663
+  min baseline for curation: 0.0045
+  after near-duplicate curation: 52 frames
+
+Adaptive gate local radius: median=0.02709 p90=0.09094
+
+Loading Depth Anything V2 Base on MPS...
+Loading weights:   0%|          | 0/287 [00:00<?, ?it/s]Loading weights: 100%|██████████| 287/287 [00:00<00:00, 7591.57it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Depth model loaded.
+
+======================================================================
+PASS 1: DEPTH + CALIBRATION + TRACK MAPS
+======================================================================
+
+[01/52] frame_0027.jpg
+   model=linear samples=1700 corr=-0.897 rmse=0.08262 tracks=1674
+[02/52] frame_0028.jpg
+   model=linear samples=1959 corr=-0.904 rmse=0.07967 tracks=1904
+[03/52] frame_0029.jpg
+   model=linear samples=2057 corr=-0.907 rmse=0.08015 tracks=2014
+[04/52] frame_0030.jpg
+   model=linear samples=2118 corr=-0.899 rmse=0.08556 tracks=2066
+[05/52] frame_0031.jpg
+   model=linear samples=2130 corr=-0.890 rmse=0.09052 tracks=2102
+[06/52] frame_0032.jpg
+   model=linear samples=2187 corr=-0.903 rmse=0.08483 tracks=2166
+[07/52] frame_0033.jpg
+   model=linear samples=2222 corr=-0.905 rmse=0.08514 tracks=2194
+[08/52] frame_0034.jpg
+   model=linear samples=2144 corr=-0.901 rmse=0.08957 tracks=2119
+[09/52] frame_0035.jpg
+   model=linear samples=2132 corr=-0.901 rmse=0.08763 tracks=2111
+[10/52] frame_0036.jpg
+   model=linear samples=2107 corr=-0.906 rmse=0.08518 tracks=2086
+[11/52] frame_0037.jpg
+   model=linear samples=2054 corr=-0.901 rmse=0.08887 tracks=2045
+[12/52] frame_0038.jpg
+   model=linear samples=1864 corr=-0.891 rmse=0.09318 tracks=1857
+[13/52] frame_0039.jpg
+   model=linear samples=3189 corr=-0.969 rmse=0.13378 tracks=3015
+[14/52] frame_0040.jpg
+   model=linear samples=3610 corr=-0.970 rmse=0.13449 tracks=3395
+[15/52] frame_0041.jpg
+   model=linear samples=3695 corr=-0.967 rmse=0.14238 tracks=3487
+[16/52] frame_0042.jpg
+   model=linear samples=3709 corr=-0.965 rmse=0.14873 tracks=3481
+[17/52] frame_0043.jpg
+   model=linear samples=3789 corr=-0.968 rmse=0.14323 tracks=3546
+[18/52] frame_0044.jpg
+   model=linear samples=3994 corr=-0.969 rmse=0.14451 tracks=3703
+[19/52] frame_0045.jpg
+   model=linear samples=3910 corr=-0.969 rmse=0.14469 tracks=3646
+[20/52] frame_0046.jpg
+   model=linear samples=3603 corr=-0.967 rmse=0.15410 tracks=3372
+[21/52] frame_0047.jpg
+   model=linear samples=3407 corr=-0.966 rmse=0.15726 tracks=3217
+[22/52] frame_0048.jpg
+   model=linear samples=3501 corr=-0.969 rmse=0.15149 tracks=3315
+[23/52] frame_0049.jpg
+   model=linear samples=3430 corr=-0.972 rmse=0.14415 tracks=3238
+[24/52] frame_0050.jpg
+   model=linear samples=3139 corr=-0.972 rmse=0.14859 tracks=2988
+[25/52] frame_0051.jpg
+   model=linear samples=2746 corr=-0.976 rmse=0.10558 tracks=2656
+[26/52] frame_0052.jpg
+   model=linear samples=3036 corr=-0.978 rmse=0.10127 tracks=2927
+[27/52] frame_0053.jpg
+   model=linear samples=2959 corr=-0.979 rmse=0.09826 tracks=2849
+[28/52] frame_0054.jpg
+   model=linear samples=2876 corr=-0.975 rmse=0.10914 tracks=2778
+[29/52] frame_0055.jpg
+   model=linear samples=2995 corr=-0.974 rmse=0.10997 tracks=2863
+[30/52] frame_0056.jpg
+   model=linear samples=2994 corr=-0.974 rmse=0.10944 tracks=2874
+[31/52] frame_0057.jpg
+   model=linear samples=2946 corr=-0.975 rmse=0.10850 tracks=2839
+[32/52] frame_0058.jpg
+   model=linear samples=2896 corr=-0.972 rmse=0.11245 tracks=2777
+[33/52] frame_0059.jpg
+   model=linear samples=2947 corr=-0.980 rmse=0.09400 tracks=2827
+[34/52] frame_0060.jpg
+   model=linear samples=3004 corr=-0.975 rmse=0.10465 tracks=2875
+[35/52] frame_0061.jpg
+   model=linear samples=2726 corr=-0.967 rmse=0.05622 tracks=2602
+[36/52] frame_0062.jpg
+   model=linear samples=3535 corr=-0.971 rmse=0.05052 tracks=3324
+[37/52] frame_0063.jpg
+   model=linear samples=3956 corr=-0.968 rmse=0.05253 tracks=3675
+[38/52] frame_0064.jpg
+   model=linear samples=4071 corr=-0.965 rmse=0.05318 tracks=3797
+[39/52] frame_0065.jpg
+   model=linear samples=4201 corr=-0.967 rmse=0.05084 tracks=3901
+[40/52] frame_0066.jpg
+   model=linear samples=4230 corr=-0.968 rmse=0.04907 tracks=3929
+[41/52] frame_0067.jpg
+   model=linear samples=4165 corr=-0.969 rmse=0.04802 tracks=3862
+[42/52] frame_0068.jpg
+   model=linear samples=4087 corr=-0.969 rmse=0.04616 tracks=3771
+[43/52] frame_0069.jpg
+   model=linear samples=4062 corr=-0.967 rmse=0.04504 tracks=3750
+[44/52] frame_0070.jpg
+   model=linear samples=3822 corr=-0.971 rmse=0.04218 tracks=3542
+[45/52] frame_0071.jpg
+   model=linear samples=3299 corr=-0.969 rmse=0.04268 tracks=3124
+[46/52] frame_0072.jpg
+   model=linear samples=123 corr=-0.774 rmse=0.14977 tracks=123
+[47/52] frame_0073.jpg
+   model=inverse samples=154 corr=0.781 rmse=0.16875 tracks=151
+[48/52] frame_0074.jpg
+   model=inverse samples=138 corr=-0.880 rmse=0.27005 tracks=140
+[49/52] frame_0075.jpg
+   model=inverse samples=139 corr=-0.685 rmse=0.74335 tracks=138
+[50/52] frame_0076.jpg
+   model=linear samples=129 corr=-0.865 rmse=0.14037 tracks=126
+[51/52] frame_0077.jpg
+   model=inverse samples=119 corr=0.814 rmse=0.15506 tracks=118
+[52/52] frame_0078.jpg
+   model=inverse samples=119 corr=-0.957 rmse=0.28637 tracks=121
+
+Calibrated frames: 52
+After RMSE outlier gate: 49 frames (median RMSE 0.10296, threshold 0.25740)
+
+======================================================================
+PASS 2: TRACK-ANCHORED DENSE FUSION
+======================================================================
+
+[FUSE 01/49] frame_0027.jpg
+   candidates=14400 gate=9906 votes_pass=8999
+[FUSE 02/49] frame_0028.jpg
+   candidates=14400 gate=10002 votes_pass=9145
+[FUSE 03/49] frame_0029.jpg
+   candidates=14400 gate=9627 votes_pass=8884
+[FUSE 04/49] frame_0030.jpg
+   candidates=14400 gate=9523 votes_pass=8857
+[FUSE 05/49] frame_0031.jpg
+   candidates=14400 gate=9437 votes_pass=8804
+[FUSE 06/49] frame_0032.jpg
+   candidates=14400 gate=9459 votes_pass=8802
+[FUSE 07/49] frame_0033.jpg
+   candidates=14400 gate=9275 votes_pass=8668
+[FUSE 08/49] frame_0034.jpg
+   candidates=14400 gate=9175 votes_pass=8634
+[FUSE 09/49] frame_0035.jpg
+   candidates=14400 gate=9048 votes_pass=8512
+[FUSE 10/49] frame_0036.jpg
+   candidates=14400 gate=8853 votes_pass=8432
+[FUSE 11/49] frame_0037.jpg
+   candidates=14400 gate=8690 votes_pass=8599
+[FUSE 12/49] frame_0038.jpg
+   candidates=14400 gate=8424 votes_pass=8201
+[FUSE 13/49] frame_0039.jpg
+   candidates=14400 gate=7430 votes_pass=7349
+[FUSE 14/49] frame_0040.jpg
+   candidates=14400 gate=7401 votes_pass=7342
+[FUSE 15/49] frame_0041.jpg
+   candidates=14400 gate=7258 votes_pass=7196
+[FUSE 16/49] frame_0042.jpg
+   candidates=14400 gate=7218 votes_pass=7130
+[FUSE 17/49] frame_0043.jpg
+   candidates=14400 gate=7004 votes_pass=6922
+[FUSE 18/49] frame_0044.jpg
+   candidates=14400 gate=7044 votes_pass=6965
+[FUSE 19/49] frame_0045.jpg
+   candidates=14400 gate=6950 votes_pass=6872
+[FUSE 20/49] frame_0046.jpg
+   candidates=14400 gate=6737 votes_pass=6668
+[FUSE 21/49] frame_0047.jpg
+   candidates=14400 gate=6555 votes_pass=6507
+[FUSE 22/49] frame_0048.jpg
+fusion_v10.py:764: RuntimeWarning: invalid value encountered in cast
+  ui = np.rint(un).astype(np.int32)
+fusion_v10.py:765: RuntimeWarning: invalid value encountered in cast
+  vi = np.rint(vn).astype(np.int32)
+   candidates=14400 gate=6505 votes_pass=6456
+[FUSE 23/49] frame_0049.jpg
+   candidates=14400 gate=6484 votes_pass=6437
+[FUSE 24/49] frame_0050.jpg
+   candidates=14400 gate=6376 votes_pass=5852
+[FUSE 25/49] frame_0051.jpg
+   candidates=14400 gate=10298 votes_pass=9475
+[FUSE 26/49] frame_0052.jpg
+   candidates=14400 gate=10389 votes_pass=9564
+[FUSE 27/49] frame_0053.jpg
+   candidates=14400 gate=10294 votes_pass=8233
+[FUSE 28/49] frame_0054.jpg
+   candidates=14400 gate=10356 votes_pass=8124
+[FUSE 29/49] frame_0055.jpg
+   candidates=14400 gate=10340 votes_pass=8111
+[FUSE 30/49] frame_0056.jpg
+   candidates=14400 gate=10349 votes_pass=8134
+[FUSE 31/49] frame_0057.jpg
+   candidates=14400 gate=10345 votes_pass=8133
+[FUSE 32/49] frame_0058.jpg
+   candidates=14400 gate=10300 votes_pass=8111
+[FUSE 33/49] frame_0059.jpg
+   candidates=14400 gate=10311 votes_pass=8276
+[FUSE 34/49] frame_0060.jpg
+   candidates=14400 gate=10440 votes_pass=8193
+[FUSE 35/49] frame_0061.jpg
+   candidates=14400 gate=10658 votes_pass=9622
+[FUSE 36/49] frame_0062.jpg
+   candidates=14400 gate=10954 votes_pass=10362
+[FUSE 37/49] frame_0063.jpg
+   candidates=14400 gate=11072 votes_pass=10214
+[FUSE 38/49] frame_0064.jpg
+   candidates=14400 gate=11043 votes_pass=10114
+[FUSE 39/49] frame_0065.jpg
+   candidates=14400 gate=10846 votes_pass=10003
+[FUSE 40/49] frame_0066.jpg
+   candidates=14400 gate=10730 votes_pass=9908
+[FUSE 41/49] frame_0067.jpg
+   candidates=14400 gate=10755 votes_pass=9951
+[FUSE 42/49] frame_0068.jpg
+   candidates=14400 gate=10807 votes_pass=10001
+[FUSE 43/49] frame_0069.jpg
+   candidates=14400 gate=10828 votes_pass=10021
+[FUSE 44/49] frame_0070.jpg
+   candidates=14400 gate=10895 votes_pass=10114
+[FUSE 45/49] frame_0071.jpg
+   candidates=14400 gate=10635 votes_pass=10018
+[FUSE 46/49] frame_0072.jpg
+fusion_v10.py:764: RuntimeWarning: invalid value encountered in cast
+  ui = np.rint(un).astype(np.int32)
+fusion_v10.py:765: RuntimeWarning: invalid value encountered in cast
+  vi = np.rint(vn).astype(np.int32)
+   candidates=14310 gate=3802 votes_pass=2265
+[FUSE 47/49] frame_0073.jpg
+   candidates=13965 gate=2855 votes_pass=2042
+[FUSE 48/49] frame_0076.jpg
+   candidates=14387 gate=4085 votes_pass=2006
+[FUSE 49/49] frame_0077.jpg
+   candidates=13983 gate=2739 votes_pass=1934
+
+Fusion stage totals:
+  candidates   704645
+  gate_pass    430507
+  votes_pass   389162
+  frames_fused 49
+  vote histogram: {'agree': 2095807, 'contradict': 81180, 'neutral': 211370}
+
+Merging...
+Raw fused points: 389162
+Voxel downsampling (0.040)...
+After voxel: 35589
+Statistical cleanup (30, 1.5)...
+After cleanup: 33892
+Saved raw: /Users/kavya/flight2world/test/fused_v10.ply
+Saved diagnostics: /Users/kavya/flight2world/test/fused_v10_diag.json
+
+======================================================================
+CLEAN STAGE (DBSCAN main-cluster retention)
+======================================================================
+
+Clean voxel size: 0.0205 -> 33547 points
+Saved clean: /Users/kavya/flight2world/test/fused_v10_clean.ply
+Clean points: 31874
+
+======================================================================
+V10 COMPLETE
+======================================================================
+
+
+=== INSTRUMENTATION (wrapper, no logic change) ===
+ELAPSED_S=58.9
+PEAK ru_maxrss = 623804416 bytes = 623.8 MB
+PEAK ps RSS     = 608608 KB  = 594.3 MB
+ps_rss_kb series (every ~5s): [17408, 509136, 445408, 473712, 435984, 442880, 280688, 219888, 220816, 266704, 321792, 402400]
+ru_maxrss bytes series (every ~5s): [17547264, 521355264, 531152896, 531152896, 531152896, 531152896, 531152896, 531152896, 531152896, 531152896, 531152896, 531152896]

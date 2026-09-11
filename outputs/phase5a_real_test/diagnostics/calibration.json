@@ -1,0 +1,200 @@
+{
+  "stage": "calibration",
+  "status": "ok",
+  "elapsed_s": 9.469783208987792,
+  "details": {
+    "n_curated": 22,
+    "n_calibrated_before_rmse": 22,
+    "n_kept": 22,
+    "n_dropped_rmse": 0,
+    "rmse_median": 0.15432384897208495,
+    "rmse_threshold": 0.3858096224302124,
+    "calibration_rows": [
+      {
+        "name": "frame_0015.jpg",
+        "model": "linear",
+        "samples": 1498,
+        "corr": -0.897,
+        "rmse": 0.14467,
+        "tracks": 1473
+      },
+      {
+        "name": "frame_0016.jpg",
+        "model": "linear",
+        "samples": 1659,
+        "corr": -0.8981,
+        "rmse": 0.14618,
+        "tracks": 1633
+      },
+      {
+        "name": "frame_0017.jpg",
+        "model": "linear",
+        "samples": 1704,
+        "corr": -0.9042,
+        "rmse": 0.14589,
+        "tracks": 1689
+      },
+      {
+        "name": "frame_0018.jpg",
+        "model": "linear",
+        "samples": 1687,
+        "corr": -0.904,
+        "rmse": 0.14909,
+        "tracks": 1676
+      },
+      {
+        "name": "frame_0019.jpg",
+        "model": "linear",
+        "samples": 1729,
+        "corr": -0.9033,
+        "rmse": 0.14969,
+        "tracks": 1721
+      },
+      {
+        "name": "frame_0020.jpg",
+        "model": "linear",
+        "samples": 1511,
+        "corr": -0.9013,
+        "rmse": 0.15226,
+        "tracks": 1516
+      },
+      {
+        "name": "frame_0021.jpg",
+        "model": "linear",
+        "samples": 2719,
+        "corr": -0.97,
+        "rmse": 0.22477,
+        "tracks": 2597
+      },
+      {
+        "name": "frame_0022.jpg",
+        "model": "linear",
+        "samples": 2793,
+        "corr": -0.9716,
+        "rmse": 0.22044,
+        "tracks": 2645
+      },
+      {
+        "name": "frame_0023.jpg",
+        "model": "linear",
+        "samples": 3005,
+        "corr": -0.9744,
+        "rmse": 0.21193,
+        "tracks": 2820
+      },
+      {
+        "name": "frame_0024.jpg",
+        "model": "linear",
+        "samples": 2825,
+        "corr": -0.9712,
+        "rmse": 0.23126,
+        "tracks": 2680
+      },
+      {
+        "name": "frame_0025.jpg",
+        "model": "linear",
+        "samples": 2654,
+        "corr": -0.9714,
+        "rmse": 0.2384,
+        "tracks": 2528
+      },
+      {
+        "name": "frame_0026.jpg",
+        "model": "linear",
+        "samples": 1951,
+        "corr": -0.9759,
+        "rmse": 0.17867,
+        "tracks": 1903
+      },
+      {
+        "name": "frame_0027.jpg",
+        "model": "linear",
+        "samples": 2713,
+        "corr": -0.9807,
+        "rmse": 0.15639,
+        "tracks": 2603
+      },
+      {
+        "name": "frame_0028.jpg",
+        "model": "linear",
+        "samples": 2644,
+        "corr": -0.9811,
+        "rmse": 0.1577,
+        "tracks": 2531
+      },
+      {
+        "name": "frame_0029.jpg",
+        "model": "linear",
+        "samples": 2703,
+        "corr": -0.9737,
+        "rmse": 0.18309,
+        "tracks": 2611
+      },
+      {
+        "name": "frame_0030.jpg",
+        "model": "linear",
+        "samples": 2692,
+        "corr": -0.9776,
+        "rmse": 0.16781,
+        "tracks": 2580
+      },
+      {
+        "name": "frame_0031.jpg",
+        "model": "linear",
+        "samples": 2616,
+        "corr": -0.9782,
+        "rmse": 0.16265,
+        "tracks": 2520
+      },
+      {
+        "name": "frame_0032.jpg",
+        "model": "linear",
+        "samples": 2942,
+        "corr": -0.9725,
+        "rmse": 0.0829,
+        "tracks": 2792
+      },
+      {
+        "name": "frame_0033.jpg",
+        "model": "linear",
+        "samples": 3215,
+        "corr": -0.9689,
+        "rmse": 0.08465,
+        "tracks": 3036
+      },
+      {
+        "name": "frame_0034.jpg",
+        "model": "linear",
+        "samples": 3475,
+        "corr": -0.9696,
+        "rmse": 0.08082,
+        "tracks": 3248
+      },
+      {
+        "name": "frame_0035.jpg",
+        "model": "linear",
+        "samples": 3168,
+        "corr": -0.9706,
+        "rmse": 0.07392,
+        "tracks": 2985
+      },
+      {
+        "name": "frame_0036.jpg",
+        "model": "linear",
+        "samples": 2884,
+        "corr": -0.9729,
+        "rmse": 0.0691,
+        "tracks": 2737
+      }
+    ],
+    "rmse_diagnostics": {
+      "median": 0.15432384897208495,
+      "threshold": 0.3858096224302124,
+      "kept": 22,
+      "dropped": 0,
+      "n_total": 22,
+      "factor": 2.5
+    }
+  },
+  "error": null
+}

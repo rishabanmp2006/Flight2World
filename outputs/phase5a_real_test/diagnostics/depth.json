@@ -1,0 +1,212 @@
+{
+  "stage": "depth",
+  "status": "ok",
+  "elapsed_s": 16.562168082993594,
+  "details": {
+    "model": "depth-anything/Depth-Anything-V2-Base-hf",
+    "device": "mps",
+    "n_curated": 22,
+    "n_depth_ok": 22,
+    "per_frame": [
+      {
+        "name": "frame_0015.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0016.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0017.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0018.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0019.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0020.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0021.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0022.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0023.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0024.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0025.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0026.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0027.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0028.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0029.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0030.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0031.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0032.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0033.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0034.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0035.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      },
+      {
+        "name": "frame_0036.jpg",
+        "status": "ok",
+        "shape": [
+          720,
+          1280
+        ],
+        "dtype": "float32"
+      }
+    ]
+  },
+  "error": null
+}

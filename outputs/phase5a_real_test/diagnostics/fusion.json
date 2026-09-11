@@ -1,0 +1,23 @@
+{
+  "stage": "fusion",
+  "status": "ok",
+  "elapsed_s": 1.265953416004777,
+  "details": {
+    "candidates": 316800,
+    "gate_pass": 162199,
+    "votes_pass": 151914,
+    "frames_fused": 22,
+    "vote_hist": {
+      "agree": 751740,
+      "contradict": 24222,
+      "neutral": 35631
+    },
+    "stats": {
+      "candidates": 316800,
+      "gate_pass": 162199,
+      "votes_pass": 151914,
+      "frames_fused": 22
+    }
+  },
+  "error": null
+}

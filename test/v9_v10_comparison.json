@@ -1,0 +1,117 @@
+{
+  "model": {
+    "V9": "depth-anything/Depth-Anything-V2-Small-hf",
+    "V10": "depth-anything/Depth-Anything-V2-Base-hf"
+  },
+  "V9": {
+    "points_clean": 32755,
+    "points_raw": 34802,
+    "extent": [
+      6.5927500000000006,
+      2.8538419999999998,
+      3.2641480000000005
+    ],
+    "dist_to_sparse": {
+      "median": 0.05526,
+      "p90": 0.10462600000000002,
+      "p99": 0.11787
+    },
+    "sparse_coverage": {
+      "0.03": 0.7239166913434014,
+      "0.05": 0.8439443292863489,
+      "0.10": 0.9388510512289014
+    },
+    "confidence": {
+      "mean": 0.9286441880667072,
+      "median": 0.9615384615384616,
+      "p10": 0.8214285714285714,
+      "low_conf_frac": 0.0002137078308655167
+    },
+    "residual_error": {
+      "median": 0.11103,
+      "p90": 0.2598380000000004
+    },
+    "worst_residual_p90": 0.8152452733684685,
+    "worst_residual_median": -1.0,
+    "frac_with_contradiction": 0.1630285452602656,
+    "evidence_p90": 35.0,
+    "candidates": 691200,
+    "gate_pass": 430912,
+    "votes_pass": 389910,
+    "frames_fused": 48
+  },
+  "V10": {
+    "points_clean": 31874,
+    "points_raw": 33892,
+    "extent": [
+      6.549003,
+      2.781739,
+      3.2858849999999995
+    ],
+    "dist_to_sparse": {
+      "median": 0.0518,
+      "p90": 0.10099700000000002,
+      "p99": 0.1171727
+    },
+    "sparse_coverage": {
+      "0.03": 0.7396604481295035,
+      "0.05": 0.8578126542295923,
+      "0.10": 0.9457605369657487
+    },
+    "confidence": {
+      "mean": 0.930226804429868,
+      "median": 0.9615384615384616,
+      "p10": 0.8461538461538461,
+      "low_conf_frac": 0.0001882411997239129
+    },
+    "residual_error": {
+      "median": 0.10096,
+      "p90": 0.24286400000000002
+    },
+    "worst_residual_p90": 0.8374601421197888,
+    "worst_residual_median": -1.0,
+    "frac_with_contradiction": 0.16182468469599046,
+    "evidence_p90": 34.0,
+    "candidates": 704645,
+    "gate_pass": 430507,
+    "votes_pass": 389162,
+    "frames_fused": 49
+  },
+  "v10_to_v9": {
+    "nn_median": 0.020598054773390495,
+    "nn_p90": 0.05078129902501589,
+    "frac_within_2x_median": 0.845108866160507
+  },
+  "v9_to_v10": {
+    "nn_median": 0.021162401517786193,
+    "nn_p90": 0.05426457557091061
+  },
+  "deltas_V10_minus_V9": {
+    "points_clean": -881,
+    "dist_sparse_median": -0.003459999999999998,
+    "dist_sparse_p90": -0.0036290000000000072,
+    "coverage_0.05": 0.013868324943243415,
+    "coverage_0.10": 0.006909485736847243,
+    "confidence_mean": 0.0015826163631608159,
+    "residual_median": -0.01007000000000001,
+    "residual_p90": -0.016974000000000378,
+    "worst_residual_p90": 0.022214868751320282
+  },
+  "bootstrap": {
+    "median_dist_sparse_V9_minus_V10": {
+      "mean": 0.0034311474999999996,
+      "ci95": [
+        0.002704874999999999,
+        0.004130000000000002
+      ]
+    },
+    "median_residual_V9_minus_V10": {
+      "mean": 0.010035507499999999,
+      "ci95": [
+        0.008529874999999996,
+        0.011630125000000002
+      ]
+    }
+  },
+  "geometry_verdict": "GEOMETRY IMPROVED but FEWER points (tighter to triangulated surface; count -881)"
+}

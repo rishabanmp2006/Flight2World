@@ -1,0 +1,48 @@
+{
+  "input_cloud": "/Users/kavya/flight2world/test/fused_v9_clean.ply",
+  "points": 32755,
+  "frames_replayed": 48,
+  "frame_replay_matches_diag": true,
+  "units": "ARBITRARY COLMAP scale -- NOT metric (no GPS source)",
+  "confidence": {
+    "definition": "Laplace-smoothed agreement ratio (agree+1)/(agree+contradict+2) against triangulated COLMAP track depth over all fused frames",
+    "mean": 0.9286441880667072,
+    "median": 0.9615384615384616,
+    "p10": 0.8214285714285714,
+    "p90": 0.9722222222222222
+  },
+  "evidence": {
+    "definition": "number of fused frames whose track map constrained this pixel",
+    "p50": 25.0,
+    "p90": 35.0,
+    "zero_evidence_points": 0
+  },
+  "agree_ratio_raw": {
+    "median": 1.0,
+    "p10": 0.8518518518518519
+  },
+  "net_votes": {
+    "p10": 12.0,
+    "median": 24.0
+  },
+  "residual_error": {
+    "definition": "mean |candidate Z - track Z| on agreeing views, scene units (arbitrary)",
+    "median": 0.11102752108020159,
+    "p90": 0.25983592577607834
+  },
+  "worst_residual": {
+    "definition": "largest |Z - track Z| over all constraining views (scene units, arbitrary); -1 if no view contradicts",
+    "median": -1.0,
+    "p90": 0.8152452733684685,
+    "fraction_with_contradiction": 0.1630285452602656
+  },
+  "dist_sparse": {
+    "definition": "NN distance to triangulated sparse surface, scene units (arbitrary)",
+    "median": 0.0552568137964928,
+    "p90": 0.10462379323177978
+  },
+  "corr_confidence_dist_sparse": -0.043744821973596935,
+  "corr_confidence_evidence": -0.05983928846251466,
+  "low_conf_count": 7,
+  "low_conf_frac": 0.0002137078308655167
+}

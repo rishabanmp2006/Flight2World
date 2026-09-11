@@ -1,0 +1,17 @@
+{
+  "stage": "colmap",
+  "status": "ok",
+  "elapsed_s": 25.510396458994364,
+  "details": {
+    "database": "/Users/kavya/flight2world/outputs/phase4_real_test/colmap/database.db",
+    "sparse_dir": "/Users/kavya/flight2world/outputs/phase4_real_test/colmap/sparse",
+    "sparse_txt": "/Users/kavya/flight2world/outputs/phase4_real_test/colmap/sparse_txt",
+    "stages": [
+      "feature_extraction",
+      "sequential_matching",
+      "sparse_mapping",
+      "model_converter"
+    ]
+  },
+  "error": null
+}
