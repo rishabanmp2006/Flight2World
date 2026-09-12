@@ -57,3 +57,6 @@ outputs/
 *.pth
 *.onnx
 *.safetensors
+
+# ---- Local planning docs (kept out of the repo) ----
+docs/SIH26158_PLAN.md
