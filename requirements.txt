@@ -1,0 +1,20 @@
+# FLIGHT2WORLD — runtime dependencies
+#
+# Version floors match the validated environment recorded in
+# docs/ARCHITECTURE.md (section A.2). Pin exactly with:
+#     pip freeze > requirements.lock.txt
+#
+# External binaries required on PATH (NOT pip-installable):
+#     colmap   >= 4.1.1     structure-from-motion
+#     ffmpeg / ffprobe      video probing (optional; OpenCV is the fallback)
+
+# --- numerical core ---
+numpy>=2.0
+opencv-python>=4.9
+open3d>=0.19.0
+pillow>=10.0
+
+# --- monocular depth (Depth Anything V2) ---
+# Imported lazily by core/depth.py: importing the module downloads nothing.
+transformers>=4.40
+torch>=2.2

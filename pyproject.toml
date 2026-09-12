@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flight2world"
+version = "0.5.0"
+description = "Drone video to dense point cloud via COLMAP SfM + Depth Anything V2 track-anchored fusion"
+readme = "README.md"
+requires-python = ">=3.12"
+keywords = ["photogrammetry", "colmap", "structure-from-motion", "point-cloud", "depth-estimation", "drone"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+dependencies = [
+    "numpy>=2.0",
+    "opencv-python>=4.9",
+    "open3d>=0.19.0",
+    "pillow>=10.0",
+    "transformers>=4.40",
+    "torch>=2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.6"]
+
+[project.urls]
+Repository = "https://github.com/rishabanmp2006/Flight2World"
+Architecture = "https://github.com/rishabanmp2006/Flight2World/blob/main/docs/ARCHITECTURE.md"
+
+# The importable package is `core` (see docs/ARCHITECTURE.md D.2 for the
+# rationale behind the flat import path).
+[tool.setuptools]
+packages = ["core"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+# smoke_depth_integration.py downloads the Depth Anything model — opt in
+# explicitly with: pytest tests/smoke_depth_integration.py
+addopts = "-ra --strict-markers"
+markers = [
+    "slow: deselect with -m 'not slow'",
+    "requires_colmap: needs the colmap binary on PATH",
+    "requires_model: downloads the Depth Anything V2 weights",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# Frozen research artifacts — never reformat or lint these.
+extend-exclude = ["experiments", "data", "outputs", ".venv"]
+
+[tool.ruff.lint]
+# Correctness rules only: pyflakes (F) catches undefined names, unused
+# imports and dead locals; E9 catches syntax/IO errors.
+#
+# Style modernisation (E/W/I/UP/B) reports ~180 findings across the existing
+# code -- mostly `Optional[X]` -> `X | None`, `Dict` -> `dict` and import
+# ordering. Enabling those is a separate, reviewable commit; adding them here
+# would mean reformatting code this restructure did not otherwise touch.
+select = ["F", "E9"]
+ignore = []

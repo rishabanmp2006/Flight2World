@@ -29,9 +29,9 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable, Optional
+from typing import Any, Optional
 
 from core.config import (
     COORDINATE_SYSTEM,
@@ -39,11 +39,9 @@ from core.config import (
     DEFAULT_DEPTH_MODEL,
     GEOREFERENCED,
     METRIC_SCALE,
-    PIPELINE_CACHE_MANIFEST,
     PIPELINE_COLMAP_SUBDIR,
     PIPELINE_CONFIDENCE_JSON,
     PIPELINE_CONFIDENCE_PLY,
-    PIPELINE_DATABASE_NAME,
     PIPELINE_DIAGNOSTICS_SUBDIR,
     PIPELINE_FRAMES_SUBDIR,
     PIPELINE_FUSED_CLEAN_NAME,
@@ -441,7 +439,6 @@ def stage_depth_and_calibration(
     pipe = None
     actual_model = depth_model
     actual_device = depth_device
-    depth_error: Optional[str] = None
     try:
         from core.depth import DepthAnythingV2
         pipe = DepthAnythingV2(model=depth_model, device=depth_device, pipeline_factory=depth_factory)

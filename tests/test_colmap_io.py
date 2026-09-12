@@ -1,7 +1,7 @@
 """tests.test_colmap_io
 
 Deterministic tests for core.colmap_io using the real COLMAP artifacts
-in test/sparse_txt/. Covers requirement A (camera parsing), B (55 images),
+in data/benchmark/sparse_txt/. Covers requirement A (camera parsing), B (55 images),
 C (20265 points), and D (pose convention).
 """
 

@@ -7,9 +7,7 @@ is used as the executable so command construction, path handling, and error
 propagation can be verified without a GPU, database, or image set.
 """
 
-import json
 import pathlib
-import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -235,7 +233,9 @@ def test_feature_extraction_failure_raises_ColmapError():
         td = Path(td)
         # Create a failing fake: map "feature_extractor" to a name containing "fail"
         # Simpler: mock _run_colmap to return failure
-        with mock.patch("core.colmap_runner._run_colmap") as m:
+        with mock.patch("core.colmap_runner._run_colmap") as m, \
+             mock.patch("core.colmap_runner.resolve_colmap_exe",
+                        return_value="colmap"):
             m.return_value = cr.ColmapCommandResult(command=["colmap","feature_extractor"], returncode=1, stdout="", stderr="boom")
             try:
                 cr.feature_extraction(td / "db.db", td / "imgs", exe="colmap")
@@ -247,7 +247,9 @@ def test_feature_extraction_failure_raises_ColmapError():
 def test_sequential_matching_failure_raises():
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
-        with mock.patch("core.colmap_runner._run_colmap") as m:
+        with mock.patch("core.colmap_runner._run_colmap") as m, \
+             mock.patch("core.colmap_runner.resolve_colmap_exe",
+                        return_value="colmap"):
             m.return_value = cr.ColmapCommandResult(command=["colmap","sequential_matcher"], returncode=1, stdout="", stderr="fail seq")
             try:
                 cr.sequential_matching(td / "db.db", exe="colmap")
@@ -258,7 +260,9 @@ def test_sequential_matching_failure_raises():
 def test_sparse_mapping_failure_raises():
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
-        with mock.patch("core.colmap_runner._run_colmap") as m:
+        with mock.patch("core.colmap_runner._run_colmap") as m, \
+             mock.patch("core.colmap_runner.resolve_colmap_exe",
+                        return_value="colmap"):
             m.return_value = cr.ColmapCommandResult(command=["colmap","mapper"], returncode=1, stdout="", stderr="fail map")
             try:
                 cr.sparse_mapping(td / "db.db", td / "imgs", td / "sparse", exe="colmap")
@@ -269,7 +273,9 @@ def test_sparse_mapping_failure_raises():
 def test_model_converter_failure_raises():
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
-        with mock.patch("core.colmap_runner._run_colmap") as m:
+        with mock.patch("core.colmap_runner._run_colmap") as m, \
+             mock.patch("core.colmap_runner.resolve_colmap_exe",
+                        return_value="colmap"):
             m.return_value = cr.ColmapCommandResult(command=["colmap","model_converter"], returncode=1, stdout="", stderr="fail conv")
             try:
                 cr.model_converter(td / "a", td / "b", exe="colmap")

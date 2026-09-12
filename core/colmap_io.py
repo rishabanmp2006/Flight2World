@@ -17,7 +17,6 @@ New, purely-additive helpers (`parse_cameras`, accessors, projection) are
 provided for reuse and testing; they do not alter V10.
 """
 
-import os
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
@@ -69,7 +68,9 @@ def load_colmap_images(path):
                 image_id = int(parts[0])
                 qw, qx, qy, qz = map(float, parts[1:5])
                 tx, ty, tz = map(float, parts[5:8])
-                camera_id = int(parts[8])
+                # Parsed to validate the line format (a non-int raises
+                # ValueError below and the row is skipped); value unused.
+                _camera_id = int(parts[8])
                 name = parts[9]
             except ValueError:
                 i += 1

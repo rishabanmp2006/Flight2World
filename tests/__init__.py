@@ -16,9 +16,18 @@ PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-SPARSE_TXT = PROJECT_ROOT / "test" / "sparse_txt"
-FRAMES = PROJECT_ROOT / "test" / "frames"
-FUSION_V10 = PROJECT_ROOT / "fusion_v10.py"
+# Benchmark dataset (read-only fixture data). Override with
+# FLIGHT2WORLD_DATA to point the suite at a dataset outside the repo.
+import os
+
+DATA_ROOT = pathlib.Path(
+    os.environ.get("FLIGHT2WORLD_DATA", PROJECT_ROOT / "data" / "benchmark")
+)
+SPARSE_TXT = DATA_ROOT / "sparse_txt"
+FRAMES = DATA_ROOT / "frames"
+
+# The immutable V10 reference script, used for numerical head-to-head checks.
+FUSION_V10 = PROJECT_ROOT / "experiments" / "fusion_v10.py"
 
 
 def run_module_tests(module_ns):

@@ -7,7 +7,6 @@ cv2.VideoWriter, then exercise inspect/extract/cache. No model download,
 no COLMAP, no large allocation.
 """
 
-import json
 import pathlib
 import sys
 import tempfile
@@ -232,7 +231,7 @@ def test_extract_frames_auto_creates_output_dir():
 
 def test_inspect_real_benchmark_frame_is_jpeg():
     # Lightweight real-artifact check: frame_0001.jpg must be readable
-    p = Path(__file__).resolve().parent.parent / "test" / "frames" / "frame_0001.jpg"
+    p = Path(__file__).resolve().parent.parent / "data" / "benchmark" / "frames" / "frame_0001.jpg"
     if not p.exists():
         return  # skip when benchmark not present
     img = cv2.imread(str(p))

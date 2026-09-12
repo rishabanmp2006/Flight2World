@@ -24,7 +24,7 @@ import core.config as cfg
 
 IMAGES = SPARSE_TXT / "images.txt"
 POINTS = SPARSE_TXT / "points3D.txt"
-FRAMES = SPARSE_TXT.parent / "frames"          # ../test/frames (source images)
+FRAMES = SPARSE_TXT.parent / "frames"          # ../benchmark/frames (source images)
 FRAME_IMG = FRAMES / "frame_0027.jpg"
 
 N = 400  # synthetic sample count (> robust_fit min 50 and default min 100)

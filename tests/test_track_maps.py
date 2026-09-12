@@ -8,7 +8,6 @@ comparison against the exact V10 ``build_track_maps`` compiled verbatim
 from fusion_v10.py (requirement D).
 """
 
-import math
 import pathlib
 import sys
 

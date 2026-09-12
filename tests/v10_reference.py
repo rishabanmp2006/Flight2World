@@ -27,7 +27,6 @@ imports or executes the V10 script's pipeline.
 
 import ast
 import math
-import pathlib
 import textwrap
 
 import cv2

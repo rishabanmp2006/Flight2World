@@ -1,127 +1,148 @@
-# FLIGHT2WORLD — Drone Video → Point Cloud
+<div align="center">
 
-Reconstructs a dense point cloud from drone video using COLMAP (SfM) + Depth Anything V2 (monocular depth) + track-anchored fusion. All geometry is in COLMAP's **arbitrary coordinate system** — no GPS, no metric scale claimed.
+# FLIGHT2WORLD
 
-> **Status:** Phase 4 — pipeline/orchestration layer. The reconstruction maths is the validated V10 baseline (`fusion_v10.py`, immutable). Web UI, georeferencing, measurements and meshing are future phases.
+**Drone video → dense 3D point cloud**
+
+COLMAP structure-from-motion · Depth Anything V2 monocular depth · track-anchored fusion
+
+[![CI](https://github.com/rishabanmp2006/Flight2World/actions/workflows/ci.yml/badge.svg)](https://github.com/rishabanmp2006/Flight2World/actions/workflows/ci.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+[![Phase 5A](https://img.shields.io/badge/phase-5A-orange.svg)](docs/ARCHITECTURE.md)
+
+</div>
 
 ---
+
+> [!IMPORTANT]
+> **All geometry is in COLMAP's arbitrary coordinate system.** The source video
+> carries no usable GPS or telemetry, so there is **no metric scale** — distances,
+> areas and heights are in scene units, never metres. `metadata.json` records
+> `coordinate_system: "COLMAP_relative"` and `metric_scale: null`, and it will
+> not fabricate otherwise.
+
+## What it does
+
+Reconstructs a dense point cloud from ordinary drone footage. COLMAP recovers
+camera poses and a sparse model; Depth Anything V2 predicts per-frame monocular
+depth; a per-frame robust calibration fits that relative depth onto COLMAP's
+scale; and a track-anchored fusion stage votes candidate points into the final
+cloud, gated adaptively against sparse-point density. A confidence layer scores
+every surviving point.
 
 ## Quick start
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt  # or: pip install opencv-python open3d transformers torch pillow numpy
-colmap --help   # must be on PATH (tested: colmap 4.1.1)
-ffmpeg -version # for video probing (optional; OpenCV is the fallback)
+git clone https://github.com/rishabanmp2006/Flight2World.git
+cd Flight2World
+
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Benchmark data (86 frames, COLMAP sparse model, reference PLYs) lives under `test/` and is not modified by the pipeline.
-
-## Module map
-
-```
-core/config.py          single source of truth — V10 thresholds + Phase 4 (video/COLMAP/pipeline)
-core/colmap_io.py       COLMAP text-format readers (qvec2rotmat, load_colmap_images/points, camera_center)
-core/calibration.py     robust_fit, calibrate_frame, fit_depth_calibration, filter_rmse_outliers, calibrated_depth
-core/curate.py          greedy minimum-baseline curation (V10 lines 414-461)
-core/track_maps.py      build_track_maps — iterative dilation (V10 lines 330-382)
-core/depth.py           DepthAnythingV2 wrapper (injectable pipeline_factory for tests)
-core/gate.py            adaptive COLMAP gate — build_sparse_kdtree, compute_local_radius, gate_candidates
-core/fusion.py          track-anchored fusion — candidate_grid, sample_candidates, backproject, cam_to_world,
-                        track_anchored_votes, fuse_frame, fuse_all
-core/video.py           inspect_video, extract_frames, frames_cache_valid (OpenCV + ffprobe)
-core/colmap_runner.py   feature_extraction, sequential_matching, sparse_mapping, model_converter, run_colmap
-core/diagnostics.py     Diagnostics / StageRecord / StageTimer, diagnostics/*.json sidecars
-core/pipeline.py        Pipeline, PipelineConfig, stage_* helpers, build_metadata / write_metadata,
-                        filesystem cache resumability, {output_root}/frames|colmap|diagnostics|metadata.json
-tests/                  deterministic unit tests (no model download, no COLMAP invocation in the suite)
-```
-
-V10 baseline scripts (`fusion_v*.py`, `confidence_*.py`, etc.) are **immutable experiments** at the repo root.
-
-## Running tests
+COLMAP and ffmpeg are external binaries and must be on `PATH`:
 
 ```bash
-.venv/bin/python -m tests.test_colmap_io
-.venv/bin/python -m tests.test_calibration
-.venv/bin/python -m tests.test_track_maps
-.venv/bin/python -m tests.test_depth
-.venv/bin/python -m tests.test_gate
-.venv/bin/python -m tests.test_fusion
-.venv/bin/python -m tests.test_curate
-.venv/bin/python -m tests.test_video
-.venv/bin/python -m tests.test_colmap_runner
-.venv/bin/python -m tests.test_pipeline
-# or loop them:
-for m in test_colmap_io test_calibration test_track_maps test_depth test_gate test_fusion test_curate test_video test_colmap_runner test_pipeline; do
-  .venv/bin/python -m tests.$m
-done
+colmap --help     # required  (validated against 4.1.1)
+ffprobe -version  # optional  (OpenCV is the fallback for video probing)
 ```
 
-The Depth Anything integration smoke test is **opt-in** (downloads the model):
-
-```bash
-.venv/bin/python tests/smoke_depth_integration.py
-```
-
-## Pipeline (Phase 4)
+Then run the pipeline:
 
 ```python
 from pathlib import Path
 from core.pipeline import Pipeline, PipelineConfig
-from core.video import ExtractionConfig
-from core.colmap_runner import ColmapRunConfig
 
-# Minimal: just produce metadata + enumerate existing frames
-pipe = Pipeline(config=PipelineConfig(output_root=Path("outputs/run_001")))
-result = pipe.run()  # success, metadata.json written
-
-# With video → frames (cached; re-run is a no-op when manifest matches)
 pipe = Pipeline(
     config=PipelineConfig(output_root=Path("outputs/run_001")),
     video_path=Path("drone.mp4"),
 )
-result = pipe.run()  # extracts frames/frame_*.jpg, writes diagnostics/extract_frames.json
-
-# With COLMAP (expensive — opt-in)
 result = pipe.run(run_colmap=True)
-
-# Stage-by-stage (for scripts / notebooks)
-from core.pipeline import stage_extract_frames, stage_run_colmap, stage_curate_and_summarise
-paths, rec = stage_extract_frames(video_path, output_root, extraction_config=ExtractionConfig(target_fps=1.0))
 ```
 
-Output layout:
+Re-running with the same inputs is a **cache hit**: any stage with a valid
+`diagnostics/*.json` (and, for extraction, a matching frame manifest) is
+skipped. Force re-execution with `PipelineConfig(force=True)`.
+
+## Repository layout
 
 ```
-{output_root}/
-  frames/              frame_0001.jpg ...  (+ .cache_manifest.json)
-  colmap/              database.db, sparse/0/{cameras,images,points3D}.bin, sparse_txt/{...}.txt
-  diagnostics/         extract_frames.json, colmap.json, curation.json ...
-  metadata.json        {coordinate_system: "COLMAP_relative", georeferenced: false, metric_scale: null, ...}
+Flight2World/
+├── core/                 the library — reusable pipeline modules
+├── tests/                unit suite (deterministic; no model, no COLMAP)
+├── experiments/          frozen V2→V10 research scripts  ← immutable
+├── data/benchmark/       reference 86-frame dataset + artifacts  ← immutable
+├── docs/ARCHITECTURE.md  line-by-line V10 map, data flow, phase history
+└── outputs/              pipeline runs  ← generated, git-ignored
 ```
 
-Re-running the pipeline with the same inputs is a **cache hit** — stages with a valid `diagnostics/*.json` (`status == "ok"`) and (for video) a matching `.cache_manifest.json` are skipped. Pass `PipelineConfig(force=True)` to force re-execution.
+### Module map
 
-`metadata.json` **never** fabricates metres, GPS, or a metric scale when none exists. It records `coordinate_system: "COLMAP_relative"` honestly.
+| Module | Responsibility |
+|---|---|
+| [`core/config.py`](core/config.py) | Single source of truth — V10 thresholds, camera params, paths |
+| [`core/colmap_io.py`](core/colmap_io.py) | COLMAP text-format readers (`qvec2rotmat`, `load_colmap_images/points`) |
+| [`core/calibration.py`](core/calibration.py) | `robust_fit`, `calibrate_frame`, RMSE outlier filtering, `calibrated_depth` |
+| [`core/curate.py`](core/curate.py) | Greedy minimum-baseline frame curation |
+| [`core/track_maps.py`](core/track_maps.py) | `build_track_maps` — iterative dilation of sparse track depths |
+| [`core/depth.py`](core/depth.py) | Depth Anything V2 wrapper; injectable factory, loads nothing on import |
+| [`core/gate.py`](core/gate.py) | Adaptive COLMAP gate — sparse KD-tree, local radius, candidate gating |
+| [`core/fusion.py`](core/fusion.py) | Track-anchored fusion — candidate grid, backprojection, voting, `fuse_all` |
+| [`core/cleanup.py`](core/cleanup.py) | Voxel + statistical + DBSCAN cleanup |
+| [`core/confidence.py`](core/confidence.py) | Per-point global confidence / error layer |
+| [`core/export.py`](core/export.py) | PLY + JSON output with metadata |
+| [`core/video.py`](core/video.py) | `inspect_video`, `extract_frames`, cache validation |
+| [`core/colmap_runner.py`](core/colmap_runner.py) | COLMAP subprocess wrappers (features → matching → mapping → convert) |
+| [`core/diagnostics.py`](core/diagnostics.py) | `Diagnostics` / `StageRecord` / `StageTimer`, JSON sidecars |
+| [`core/pipeline.py`](core/pipeline.py) | Orchestration, resumability, honest metadata emission |
 
-## Reproducing the V10 reference
+## Output layout
+
+```
+outputs/<run>/
+├── frames/        frame_0001.jpg …  (+ .cache_manifest.json)
+├── colmap/        database.db, sparse/0/*.bin, sparse_txt/*.txt
+├── diagnostics/   extract_frames.json, colmap.json, curation.json …
+└── metadata.json  coordinate_system, georeferenced: false, metric_scale: null
+```
+
+## Tests
 
 ```bash
-# The reference experiment is a standalone script (not the modular pipeline)
-.venv/bin/python fusion_v10.py
-# or a smoke slice (first N registered frames) to validate geometry fast:
-V9_SMOKE=3 .venv/bin/python fusion_v10.py
+pip install -r requirements-dev.txt
+
+pytest tests                             # full suite
+pytest tests -m "not requires_colmap"    # skip tests needing the binary
+python -m tests.test_fusion              # any file runs standalone
 ```
 
-## Coordinate system
+The suite is deterministic: it downloads no model and invokes no COLMAP.
+`tests/v10_reference.py` AST-extracts functions straight out of
+`experiments/fusion_v10.py` and runs them head-to-head against `core/` on
+identical inputs, so the refactor is validated numerically rather than by
+eyeball.
 
-All reconstructions are in COLMAP's arbitrary scene units. `metric_scale` is `null`. Distances/areas/heights must not be presented as metres unless a genuine metric source (RTK/PPK/GCP) is supplied — future phase, not yet implemented.
+The Depth Anything integration smoke test is opt-in — it downloads weights:
 
-## Architecture
+```bash
+python tests/smoke_depth_integration.py
+```
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the V10 line-by-line module map, data-flow diagram, and Phase history.
+## Reproducing the V10 baseline
 
-## Licence / data
+`experiments/fusion_v10.py` is the validated reference (55 frames,
+Depth Anything V2 Base). It predates this layout and hardcodes
+`~/flight2world/test`; see [`experiments/README.md`](experiments/README.md)
+for the two symlinks that let it run unmodified.
 
-Benchmark frames and COLMAP outputs under `test/` are the project dataset. Do not delete or overwrite them; the test suite reads them but never writes to `test/`.
+## Status
+
+Phase 5A. The reconstruction maths is the validated V10 baseline. Web viewer,
+georeferencing, measurement and meshing are future phases — see
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Two rules dominate: `experiments/` and
+`data/benchmark/` are immutable, and generated artifacts never get committed —
+CI enforces both.

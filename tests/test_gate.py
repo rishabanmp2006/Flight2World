@@ -19,7 +19,6 @@ import numpy as np
 
 from tests import run_module_tests
 
-import core.config as cfg
 import core.gate as gate
 from tests import v10_reference
 

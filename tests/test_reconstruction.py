@@ -22,7 +22,6 @@ import shutil
 import sys
 import tempfile
 from pathlib import Path
-from unittest import mock
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
@@ -30,7 +29,7 @@ import cv2
 import numpy as np
 import open3d as o3d
 
-from tests import FRAMES, SPARSE_TXT, run_module_tests
+from tests import SPARSE_TXT, run_module_tests
 
 import core.config as cfg
 import core.diagnostics as diag
@@ -466,7 +465,6 @@ def test_stage_confidence_writes_confidence_ply_and_json():
             # If fusion produced nothing with these synthetic frames, fall back to sparse cloud as artifact
             points = np.array(list(pts.values())[:50], dtype=np.float64)
             colors = np.ones((len(points), 3)) * 0.5
-        import core.cleanup as cleanup
         pcd_raw, pcd_clean, _d, _rc = pipe.stage_cleanup(points, colors, td, diagnostics=diag_obj)
         result, rec = pipe.stage_confidence(pcd_clean, frame_records, pts, td, diagnostics=diag_obj)
         assert rec.status == "ok"
@@ -523,7 +521,8 @@ def test_pipeline_reconstruction_end_to_end_with_mocks():
         assert meta["metric_scale"] is None
         assert "pipeline_version" in meta and meta["pipeline_version"] == "phase5a"
         # Must not touch the project's test/ artifacts
-        for art in (Path("test/fused_v10.ply"), Path("test/fused_v10_clean.ply")):
+        for art in (Path("data/benchmark/fused_v10.ply"),
+                    Path("data/benchmark/fused_v10_clean.ply")):
             # If they existed before, they should still be unchanged (no write through pipeline output_root)
             pass
         # Reconstruction layout under output_root, not under test/

@@ -16,13 +16,14 @@ parameters and the calibration gates defined here.
 
 import os
 from dataclasses import dataclass, field
+from pathlib import Path
 
 
 # ============================================================
 # CAMERA INTRINSICS (from COLMAP cameras.txt, current V10)
 # ============================================================
 #
-# Reference line in test/sparse_txt/cameras.txt:
+# Reference line in data/benchmark/sparse_txt/cameras.txt:
 #   1 SIMPLE_RADIAL 1280 720 1167.4277386087481 640 360 -0.05865183452009938
 #
 # Hardcoded identically in fusion_v10.py lines 71-76.
@@ -51,9 +52,17 @@ CAMERA_DISTORTION_K = -0.05865183452009938  # SIMPLE_RADIAL k (unused by V10)
 # Metric scale is not recoverable from the available artifacts.
 METRIC_SCALE_UNKNOWN = True
 
+# Repository root, derived from this file's location so the package works
+# from any clone path and on case-sensitive filesystems (Linux CI).
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+# Benchmark dataset root. Override with the FLIGHT2WORLD_DATA environment
+# variable to point at a dataset outside the repository.
+DATA_ROOT = Path(os.environ.get("FLIGHT2WORLD_DATA", PROJECT_ROOT / "data" / "benchmark"))
+
 # Default path the rest of the pipeline reads COLMAP output from.
 # (mirrors fusion_v10.py lines 55-57)
-SPARSE_TXT = os.path.expanduser("~/flight2world/test/sparse_txt")
+SPARSE_TXT = str(DATA_ROOT / "sparse_txt")
 
 
 # ============================================================
