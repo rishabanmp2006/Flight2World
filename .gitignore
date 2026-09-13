@@ -60,3 +60,18 @@ outputs/
 
 # ---- Local planning docs (kept out of the repo) ----
 docs/SIH26158_PLAN.md
+
+# ---- Local media and viewer snapshots (never source) ----
+*.mp4
+*.MP4
+*.mov
+*.MOV
+# Open3D viewer captures (saved from inside a viewer window)
+ScreenCapture_*.png
+ScreenCamera_*.json
+DepthCapture_*.png
+DepthCamera_*.json
+
+# ---- sandbox: scripts are source; inputs and run outputs are not ----
+sandbox/input/
+sandbox/runs/
